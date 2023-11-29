@@ -1,6 +1,7 @@
 import * as React from 'react';
 import { View, ScrollView, Pressable } from 'react-native';
 import { SafeAreaView } from "react-native-safe-area-context";
+import { MyButton } from '../components/MyButton';
 
 // Import helper code
 import Settings from '../constants/Settings';
@@ -12,13 +13,47 @@ import Colours from '../constants/Colours';
 
 export default function HelpScreen(props) {
 
+  // State management
+
+  const [fontSizeModifier, setFontSizeModifier] = React.useState(Settings.fontSizeModifier);
+
+  // changeFontSize(-0.1)
+  function changeFontSize(sizeModifier) {
+    // TODO: validate the font size (e.g. not negative)
+
+    // Update the global settings value
+    Settings.fontSizeModifier += sizeModifier;
+
+    // Update the state variable to re-render the screen (update the UI)
+    setFontSizeModifier(Settings.fontSizeModifier);
+  }
+
   return (
     <SafeAreaView style={Styles.safeAreaView}>
       <ScrollView style={Styles.container} contentContainerStyle={Styles.contentContainer}>
 
         <View>
-          
-          <TextH1 style={{marginTop:0}}>Help topics</TextH1>
+
+          <TextH1 style={{ marginTop: 0 }}>Help topics</TextH1>
+
+          <TextH3>Font size</TextH3>
+
+          <View style={Styles.helpButtonContainer}>
+            <MyButton
+              text="- Smaller"
+              type="default" // default*|major|minor
+              size="medium" // small|medium*|large
+              onPress={() => { changeFontSize(-0.1) }}
+              buttonStyle={Styles.helpButton}
+            />
+            <MyButton
+              text="+ Bigger"
+              type="default" // default*|major|minor
+              size="medium" // small|medium*|large
+              onPress={() => { changeFontSize(+0.1) }}
+              buttonStyle={Styles.helpButton}
+            />
+          </View>
 
           <TextH2>Sample content</TextH2>
 
@@ -41,7 +76,7 @@ export default function HelpScreen(props) {
           <TextH2>Wanna go home?</TextH2>
 
           <Pressable onPress={() => props.navigation.replace('Root')}>
-            <TextParagraph style={{marginVertical: 10, color: Colours.tabLabelSelected}}>Click here to go home...</TextParagraph>
+            <TextParagraph style={{ marginVertical: 10, color: Colours.tabLabelSelected }}>Click here to go home...</TextParagraph>
           </Pressable>
 
         </View>
