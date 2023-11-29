@@ -44,7 +44,7 @@ export default function HomeScreen(props) {
         {/* <MyImage index="logo" /> */}
 
         <View style={Styles.homeHeadingContainer}>
-          <Text style={Styles.homeHeading}>ROI HR Management System</Text>
+          <Text style={Styles.homeHeading}>ROI HRMS</Text>
         </View>
 
         <View style={Styles.homeButtonContainer}>

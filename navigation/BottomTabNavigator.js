@@ -10,7 +10,7 @@ import Styles from "../styles/MainStyle";
 import HomeScreen from '../screens/HomeScreen';
 import HelpScreen from '../screens/HelpScreen';
 import PeopleNavigator from './PeopleNavigator';
-
+import AddPersonScreen from '../screens/AddPersonScreen';
 
 const BottomTab = createBottomTabNavigator();
 const INITIAL_ROUTE_NAME = 'Home';
@@ -43,6 +43,14 @@ export default function BottomTabNavigator({ navigation, route }) {
           title: 'View People',
           unmountOnBlur: true,   // Reset the screen when it loses focus (when someone navigates away from it)
           tabBarIcon: ({ focused }) => <TabBarIcon focused={focused} name="md-people" />
+        }}
+      />
+      <BottomTab.Screen
+        name="AddPerson"
+        component={AddPersonScreen}
+        options={{
+          title: 'Add Person',
+          tabBarIcon: ({ focused }) => <TabBarIcon focused={focused} name="md-person-add" />,
         }}
       />
       <BottomTab.Screen

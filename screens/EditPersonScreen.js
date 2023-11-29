@@ -130,7 +130,77 @@ export default function EditPersonScreen(props) {
       <ScrollView style={Styles.container} contentContainerStyle={Styles.contentContainer}>
         <TextH1 style={{ marginTop: 0 }}>Edit: {nameOriginal}</TextH1>
 
+        <View style={Styles.form}>
+          <View style={Styles.fieldSet}>
+            <TextParagraph style={Styles.legend}>Details</TextParagraph>
 
+            
+
+            <View style={Styles.formRow}>
+              <TextLabel>Name:</TextLabel>
+              <TextInput value={name} onChangeText={setName} style={Styles.textInput} />
+            </View>
+
+            <View style={Styles.formRow}>
+              <TextLabel>Phone:</TextLabel>
+              <TextInput value={phone} onChangeText={setPhone} style={Styles.textInput} />
+            </View>
+
+            <View style={Styles.formRow}>
+              <TextLabel>Department:</TextLabel>
+              {/* <TextInput value={departmentId} onChangeText={setDepartmentId} style={Styles.textInput} /> */}
+              <Picker selectedValue={departmentId} onValueChange={setDepartmentId} style={Styles.picker} itemStyle={Styles.pickerItem}>
+                {DisplayDepartmentListItems()}
+              </Picker>
+            </View>
+          </View>
+
+          <View style={Styles.fieldSet}>
+            <TextParagraph style={Styles.legend}>Address</TextParagraph>
+
+            <View style={Styles.formRow}>
+              <TextLabel>Street:</TextLabel>
+              <TextInput value={street} onChangeText={setStreet} style={Styles.textInput} />
+            </View>
+
+            <View style={Styles.formRow}>
+              <TextLabel>City:</TextLabel>
+              <TextInput value={city} onChangeText={setCity} style={Styles.textInput} />
+            </View>
+
+            <View style={Styles.formRow}>
+              <TextLabel>State:</TextLabel>
+              <TextInput value={state} onChangeText={setState} style={Styles.textInput} />
+            </View>
+
+            <View style={Styles.formRow}>
+              <TextLabel>Zip:</TextLabel>
+              <TextInput value={zip} onChangeText={setZip} style={Styles.textInput} />
+            </View>
+
+            <View style={Styles.formRow}>
+              <TextLabel>Country:</TextLabel>
+              <TextInput value={country} onChangeText={setCountry} style={Styles.textInput} />
+            </View>
+
+            
+          </View>
+        </View>
+
+        <View style={[Styles.personButtonContainer, { borderBottomWidth: 0 }]}>
+          <MyButton
+            text="Save"
+            type="major" // default*|major|minor
+            size="medium" // small|medium*|large
+            onPress={editPerson}
+          />
+          <MyButton
+            text="Cancel"
+            type="minor" // default*|major|minor
+            size="medium" // small|medium*|large
+            onPress={showViewPeople}
+          />
+        </View>
       </ScrollView>
     </SafeAreaView>
   );
